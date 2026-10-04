@@ -1,23 +1,109 @@
+---
+import { Font } from "astro:assets";
+import NavBar from "../components/NavBar.astro";
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="generator" content={Astro.generator} />
+        <title>John - Portfolio</title>
+        <Font cssVariable="--font-figtree" />
+    </head>
+    <body>
+        <NavBar />
+        <slot />
+    </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+    :root {
+        --container-width: min(1152px, calc(100% - 4rem));
+
+        --color-background: #f4f3f6;
+        --color-off-white: #fcfbfd;
+        --color-headingl: #383838;
+        --color-text: #4c4c4c;
+        --color-accent: #6d28d9;
+        --color-light-gray: #dbdbdb;
+        /* idk it's just a mix between purple and gray' */
+        --color-graple: #5a5760;
+
+        --font-default: var(--font-figtree);
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    html {
+        margin: 0;
+        background-color: var(--color-background);
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: var(--font-default);
+    }
+
+    .container {
+        width: var(--container-width);
+        margin-inline: auto;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+        margin: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+        color: var(--color-headingl);
+    }
+
+    h2 {
+        font-size: clamp(3rem, 2.7283rem + 1.3583vw, 3.815rem);
+    }
+    h3 {
+        font-size: clamp(2rem, 1.2487rem + 3.7567vw, 3.051875rem);
+    }
+
+    p {
+        color: var(--color-text);
+    }
+
+    a {
+        color: inherit;
+        font-family: inherit;
+        text-decoration: none;
+        &:focus-visible {
+            outline: 2px solid currentColor;
+            outline-offset: 4px;
+        }
+    }
+
+    .accent {
+        color: var(--color-accent);
+    }
+    img,
+    svg {
+        display: block;
+        max-width: 100%;
+    }
+    li,
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
 </style>

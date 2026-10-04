@@ -1,0 +1,77 @@
+---
+import MenuIcon from "../assets/icons/bars-solid-full.svg";
+---
+
+<nav class="navbar glass container">
+    <a class="navbar__logo" href="/"> John Whitmore </a>
+
+    <ul class="navbar__nav-list">
+        <li><a class="navbar__link" href="/">Work</a></li>
+        <li><a class="navbar__link" href="/">About me</a></li>
+        <li><a class="navbar__link--cta" href="/">Get in touch</a></li>
+    </ul>
+    <button class="navbar__mobile-trigger" aria-label="Open navigation" aria-expanded="false">
+        <MenuIcon width={44} height={44} fill="currentColor" />
+    </button>
+</nav>
+
+<style>
+    .navbar {
+        /* background-color: var(--color-background); */
+        inset-inline: 0;
+        width: min(1440px, 100%);
+        z-index: 100;
+        margin-inline: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.25rem 1rem;
+        max-height: 80px;
+    }
+    .navbar__nav-list {
+        list-style: none;
+        display: none;
+        flex-direction: row;
+        align-items: center;
+        gap: 0 1rem;
+    }
+    .navbar__link {
+        color: #4c4c4c;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .navbar__link--cta {
+        display: block;
+        padding: 0.375rem 1rem;
+        background-color: #2d2d2d;
+        color: #f4f4f4;
+        transition: background-color 300ms ease-in-out;
+
+        &:hover {
+            background-color: hsla(0, 0%, 18%, 0.6);
+        }
+    }
+    .navbar__mobile-trigger {
+        border: none;
+        background-color: transparent;
+    }
+
+    .glass {
+        background: rgba(255, 255, 255, 0.18);
+        -webkit-backdrop-filter: blur(12px) saturate(140%);
+        backdrop-filter: blur(12px) saturate(140%);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    }
+    @media (min-width: 768px) {
+        .navbar__nav-list {
+            display: flex;
+        }
+        .navbar__mobile-trigger {
+            display: none;
+        }
+    }
+</style>

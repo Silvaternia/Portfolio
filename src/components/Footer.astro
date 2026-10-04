@@ -1,0 +1,82 @@
+---
+import ArrowUpRight from "../assets/icons/arrow_up_right.svg";
+---
+
+<footer class="footer container">
+    <div class="footer__header">
+        <h3 class="footer__title">That's it. You've seen everything.</h3>
+
+        <p class="footer__lead">Want to see more? Tell me about your project.</p>
+    </div>
+
+    <a class="footer__cta accent" href="mailto:johndoe@gmail.com">
+        johndoe@gmail.com
+        <ArrowUpRight width={16} height={16} fill="currentColor" />
+    </a>
+
+    <div class="footer__meta">
+        <span>© 2026 John, all rights reserved</span>
+
+        <ul class="footer__socials">
+            <li>
+                <a class="footer__social" href="...">
+                    GitHub
+                    <ArrowUpRight width={16} height={16} fill="currentColor" />
+                </a>
+            </li>
+
+            <li>
+                <a class="footer__social" href="...">
+                    LinkedIn
+                    <ArrowUpRight width={16} height={16} fill="currentColor" />
+                </a>
+            </li>
+        </ul>
+    </div>
+</footer>
+
+<style>
+    .footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+    .footer__header {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        gap: 1rem;
+        max-width: 75%;
+    }
+    .footer__title {
+    }
+    .footer__lead {
+        font-size: 1.333rem;
+    }
+    .footer_mail {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 3rem;
+    }
+    .footer__meta {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+    }
+    .footer__socials {
+        list-style: none;
+        margin: 0;
+        display: flex;
+        align-items: end;
+        gap: 2rem;
+    }
+    .footer__social {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+</style>

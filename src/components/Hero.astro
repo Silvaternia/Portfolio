@@ -1,0 +1,81 @@
+---
+import ArrowDown from "../assets/icons/arrow_down.svg";
+---
+
+<header class="hero container">
+    <div class="hero__content">
+        <div class="hero__intro">
+            <h1 class="hero__title">BOUKE SIKKEMA</h1>
+            <p class="hero__lead">Front-end developer with a sprinkle of UI design, based in the Netherlands</p>
+        </div>
+    </div>
+
+    <div class="hero__cta">
+        <ArrowDown />
+        <p>Scroll down</p>
+    </div>
+</header>
+
+<style>
+    .hero {
+        min-height: calc(100dvh - 80px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero__content {
+        flex: 1;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hero__intro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero__title {
+        position: relative;
+        margin: 0 0 0.5rem;
+        /* reminder: vw width starts at 768 max 1280 */
+        font-size: clamp(4rem, 1.6225rem + 4.9531vw, 7.47rem);
+        line-height: 1;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+    }
+    .hero__title::before {
+        color: var(--color-text);
+        opacity: 0.7;
+        content: "Not Bauke!";
+        position: absolute;
+        font-size: clamp(0.875rem, 0.6223rem + 0.8883vw, 1.333rem);
+        font-weight: 600;
+        top: -0.5em;
+        left: 0;
+        letter-spacing: 0.2em;
+        transform: translateY(-50%);
+        font-style: italic;
+    }
+
+    .hero__lead {
+        font-size: 1.333rem;
+        max-width: 35ch;
+        text-align: center;
+    }
+
+    .hero__cta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+
+        font-size: 1.333rem;
+        opacity: 0.8;
+
+        padding-bottom: 2rem;
+    }
+</style>

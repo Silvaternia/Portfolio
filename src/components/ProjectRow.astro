@@ -1,0 +1,167 @@
+---
+import { Image } from "astro:assets";
+const { project } = Astro.props;
+---
+
+<article class="card">
+    <div class="card__visual">
+        <div class="card__visual-inner">
+            <Image src={project.ImageUrl} layout="constrained" width={640} height={360} alt="" />
+        </div>
+    </div>
+    <div class="card__content">
+        <div class="card__header">
+            <h3 class="card__title">{project.Name}</h3>
+            <div class="card__description">
+                <p>{project.Role}</p>
+                <a href={`/projects/${project.slug}`} class="card__button-view">
+                    View project <span aria-hidden="true">→</span>
+                </a>
+            </div>
+        </div>
+        <div class="card__footer">
+            <ul class="card__details"><li class="card__details-head">TYPE</li> <li>{project.type}</li></ul>
+            <ul class="card__details"><li class="card__details-head">TIMELINE</li> <li>{project.Timeline}</li></ul>
+            <ul class="card__details"><li class="card__details-head">STACK</li> <li>{project.Stack}</li></ul>
+        </div>
+    </div>
+</article>
+
+<style>
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 2rem 0;
+        overflow: hidden;
+        &:focus-within {
+            outline: 2px solid currentColor;
+            outline-offset: 4px;
+        }
+    }
+    .card__content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .card__header {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        min-width: 0;
+    }
+    .card__title {
+        margin-bottom: 0.5rem;
+        padding-bottom: 0.5rem;
+        border-width: 0 0 0.5px;
+        border-style: solid;
+        border-color: var(--color-light-gray);
+        text-align: left;
+    }
+    .card__description {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    .card__visual {
+        display: block;
+        width: 100%;
+        order: -1;
+        height: auto;
+        margin-bottom: 1rem;
+        overflow: hidden;
+        border-radius: 0.5rem;
+    }
+    .card__footer {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-rows: 0fr;
+        gap: 1rem;
+        min-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: grid-template-rows 400ms ease;
+        /* opacity 200ms ease; */
+    }
+
+    .card.is-active .card__footer {
+        grid-template-rows: 1fr;
+        opacity: 1;
+    }
+    .card__details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+        min-height: 0;
+        overflow: hidden;
+        font-size: clamp(0.875rem, 0.7857rem + 0.4464vw, 1rem);
+    }
+    .card__details-head {
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 600;
+        line-height: 1.6;
+        opacity: 0.8;
+    }
+
+    @media (min-width: 1024px) {
+        .card {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            column-gap: 5rem;
+            border-width: 0.5px 0 0;
+            border-style: solid;
+            border-color: var(--color-light-gray);
+        }
+        .card:last-child {
+            border-bottom: 0.5px solid var(--color-light-gray);
+        }
+        .card__title {
+            padding-bottom: 0;
+            border: none;
+        }
+        .card__content {
+            justify-content: space-between;
+        }
+        .card__button-view {
+            display: none;
+        }
+        .card__visual {
+            display: grid;
+            align-items: self-end;
+            max-width: 384px;
+            order: 2;
+            grid-template-rows: 0fr;
+            overflow: hidden;
+            margin-bottom: 0;
+            min-height: 0;
+            transition: grid-template-rows 350ms ease;
+            flex: 0 0 384px;
+        }
+        .card__visual-inner {
+            overflow: hidden;
+            min-height: 0;
+        }
+        img {
+            height: auto;
+        }
+        .card__footer {
+            grid-template-columns: repeat(3, 1fr);
+            align-items: end;
+        }
+
+        .card.is-active .card__visual {
+            grid-template-rows: 1fr;
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .card__footer {
+            transition: none;
+        }
+    }
+</style>
