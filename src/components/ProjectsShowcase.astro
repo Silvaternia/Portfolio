@@ -42,7 +42,7 @@ const Projects: Project[] = [
 ---
 
 <section class="showcase container">
-    <h2 id="projects" class="showcase__title">Some things I've worked on</h2>
+    <h2 id="projects" class="showcase__title">Featured work</h2>
     <div class="showcase__content">
         {Projects.map((project) => <ProjectRow project={project} />)}
     </div>
@@ -50,12 +50,12 @@ const Projects: Project[] = [
 
 <style>
     .showcase {
-        margin-block: 6rem;
+        margin-block: 6rem 8rem;
     }
     .showcase__title {
         text-align: left;
         line-height: 1.1;
-        margin-bottom: 4rem;
+        margin-bottom: 2rem;
     }
     .showcase__content {
         width: 100%;
@@ -70,9 +70,15 @@ const Projects: Project[] = [
     }
 
     @media (min-width: 1024px) {
+        .showcase {
+            margin-block: 8rem 16rem;
+        }
         .showcase__content {
             grid-template-columns: 1fr;
             gap: 0;
+        }
+        .showcase__title {
+            margin-bottom: 5rem;
         }
     }
 </style>
