@@ -1,101 +1,31 @@
 <div class="container about">
-    <header class="about__header">
-        <h2 class="about__title">The part where <span class="text-break"></span> I talk about me.</h2>
-
-        <p class="about__lead">
-            So, as you might’ve guessed, I’m John. I enjoy designing clean interfaces and turning them into something
-            that actually works. I’m drawn to simple, tidy layouts that don’t clutter the screen, or scream at me.
-        </p>
-    </header>
-
-    <div class="about__details">
-        <div class="about__item">
-            <p class="about__label accent ibm-plex">Currently doing</p>
-            <p class="about__text">
-                Front-end developer @WeSeeDo. Building and maintaining Django & Wagtail marketing websites for WeSeeDo
-                and 123meekijken.
-            </p>
-        </div>
-
-        <div class="about__item">
-            <p class="about__label accent ibm-plex">Focusing on</p>
-            <p class="about__text">Clean interfaces, UX, responsive development, accessibility and performance.</p>
-        </div>
-
-        <div class="about__item">
-            <p class="about__label accent ibm-plex">Stack</p>
-            <p class="about__text">
-                JavaScript, HTML, CSS, Tailwind CSS, Django, Python, Wagtail CMS, Git, Astro & TypeScript.
-            </p>
-        </div>
-
-        <div class="about__item">
-            <p class="about__label accent ibm-plex">Outside of coding</p>
-            <p class="about__text">Trying to give old hardware a second life...</p>
-        </div>
-    </div>
+    <span class="about__label">ABOUT ME</span>
+    <p class="about__story">
+        I design and build simple, polished interfaces with usability in mind.
+        Outside of my work, I'll usually be running or tinkering on my Mazda mx
+        5. Back at my desk, you might find me playing Palword.
+    </p>
 </div>
 
 <style>
     .about {
         display: grid;
-        gap: 4rem;
+        margin-bottom: 18rem;
+        gap: 0.5rem
     }
 
-    .about__header {
-        display: grid;
-        gap: 1rem;
+    .about__story {
+        font-size: clamp(1.5625rem, 1.4323rem + 0.651vw, 1.953125rem);
         text-align: left;
+        font-weight: 600;
+        line-height: 1.3;
     }
 
-    .about__title {
-        max-width: 13ch;
-    }
-
-    .about__lead {
-        max-width: 65ch;
-        margin: 0 auto;
-        font-size: 1.33rem;
-        line-height: 1.5;
-    }
-
-    .about__details {
-        display: grid;
-        gap: 1rem;
-    }
-
-    .about__item {
-        display: grid;
-        gap: 1rem;
-        padding-block: 2rem;
-
-        border-top: 1px solid var(--color-light-gray);
-    }
-    .text-break {
-        display: none;
-    }
-
-    .about__text {
-        line-height: 1.5;
-    }
-
-    @media (min-width: 640px) {
-        .about__header {
-            grid-template-columns: repeat(2, 1fr);
-            text-align: left;
-            align-items: start;
-        }
-
-        .about__lead {
-            margin: 0;
-        }
-
-        .about__item {
-            grid-template-columns: repeat(2, 1fr);
-            align-items: start;
-        }
-        .text-break {
-            display: block;
-        }
+    .about__label {
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 600;
+        line-height: 1.6;
+        opacity: 0.6;
     }
 </style>
