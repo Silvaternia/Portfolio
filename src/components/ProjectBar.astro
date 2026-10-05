@@ -1,12 +1,27 @@
 ---
 import { Image } from "astro:assets";
 const { project } = Astro.props;
+const details = [
+    ["Role", project.Role],
+    ["Stack", project.Stack],
+    ["Year", project.Year],
+];
 ---
 
-<article class="card">
+<a
+    href={`/projects/${project.slug}`}
+    class="card"
+    aria-label=`Read about project ${project.Name}`
+>
     <div class="card__visual">
         <div class="card__visual-inner">
-            <Image src={project.ImageUrl} layout="constrained" width={640} height={360} alt="" />
+            <Image
+                src={project.ImageUrl}
+                layout="constrained"
+                width={640}
+                height={360}
+                alt=""
+            />
         </div>
     </div>
     <div class="card__content">
@@ -14,28 +29,31 @@ const { project } = Astro.props;
             <h3 class="card__title">{project.Name}</h3>
             <div class="card__description">
                 <p>{project.Role}</p>
-                <a href={`/projects/${project.slug}`} class="card__button-view">
+                <span class="card__button-view">
                     View project <span aria-hidden="true">→</span>
-                </a>
+                </span>
             </div>
         </div>
-        <div class="card__footer">
-            <ul class="card__details"><li class="card__details-head">TYPE</li> <li>{project.type}</li></ul>
-            <ul class="card__details"><li class="card__details-head">TIMELINE</li> <li>{project.Timeline}</li></ul>
-            <ul class="card__details"><li class="card__details-head">STACK</li> <li>{project.Stack}</li></ul>
-        </div>
+        <dl class="card__footer">
+            {
+                details.map(([label, value]) => (
+                    <div class="card__details">
+                        <dt class="card__details-head">{label}</dt>
+                        <dd>
+                            {Array.isArray(value) ? value.join(", ") : value}
+                        </dd>
+                    </div>
+                ))
+            }
+        </dl>
     </div>
-</article>
+</a>
 
 <style>
     .card {
-        position: relative;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        width: 100%;
         padding: 2rem 0;
-        overflow: hidden;
         &:focus-within {
             outline: 2px solid currentColor;
             outline-offset: 4px;
@@ -44,7 +62,7 @@ const { project } = Astro.props;
     .card__content {
         display: flex;
         flex-direction: column;
-        width: 100%;
+        justify-content: space-between;
     }
     .card__header {
         display: flex;
@@ -64,7 +82,7 @@ const { project } = Astro.props;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 1rem;
+        gap: 0.5rem 1rem;
     }
 
     .card__visual {
@@ -76,22 +94,17 @@ const { project } = Astro.props;
         overflow: hidden;
         border-radius: 0.5rem;
     }
-    .card__footer {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        grid-template-rows: 0fr;
-        gap: 1rem;
-        min-height: 0;
+    .card__visual-inner {
         overflow: hidden;
-        opacity: 0;
-        transition: grid-template-rows 400ms ease;
-        /* opacity 200ms ease; */
+        min-height: 0;
+        height: auto;
+        aspect-ratio: 16/9;
+    }
+    .card__footer {
+        display: none;
+        margin: 0;
     }
 
-    .card.is-active .card__footer {
-        grid-template-rows: 1fr;
-        opacity: 1;
-    }
     .card__details {
         display: flex;
         flex-direction: column;
@@ -105,57 +118,66 @@ const { project } = Astro.props;
         text-transform: uppercase;
         font-weight: 600;
         line-height: 1.6;
-        opacity: 0.8;
+        opacity: 0.6;
+    }
+    .card__details dd {
+        margin: 0;
+    }
+
+    img {
+        height: auto;
+        aspect-ratio: 16/9;
     }
 
     @media (min-width: 1024px) {
         .card {
-            display: flex;
             flex-direction: row;
-            align-items: stretch;
-            column-gap: 5rem;
-            border-width: 0.5px 0 0;
-            border-style: solid;
-            border-color: var(--color-light-gray);
-        }
-        .card:last-child {
-            border-bottom: 0.5px solid var(--color-light-gray);
+            justify-content: space-between;
+            column-gap: 4rem;
+            border-top: 0.5px solid var(--color-light-gray);
+            transition: height 300ms ease;
+
+            &:last-child {
+                border-bottom: 0.5px solid var(--color-light-gray);
+            }
         }
         .card__title {
             padding-bottom: 0;
             border: none;
         }
-        .card__content {
-            justify-content: space-between;
-        }
-        .card__button-view {
+        .card__description {
             display: none;
         }
         .card__visual {
             display: grid;
             align-items: self-end;
+            flex: 1 0 320px;
             max-width: 384px;
-            order: 2;
+            margin: 0;
             grid-template-rows: 0fr;
             overflow: hidden;
-            margin-bottom: 0;
             min-height: 0;
-            transition: grid-template-rows 350ms ease;
-            flex: 0 0 384px;
-        }
-        .card__visual-inner {
-            overflow: hidden;
-            min-height: 0;
-        }
-        img {
-            height: auto;
+            order: 1;
+            transition: grid-template-rows 250ms ease-in-out;
         }
         .card__footer {
-            grid-template-columns: repeat(3, 1fr);
-            align-items: end;
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            grid-template-rows: 0fr;
+            gap: 4rem;
+            min-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition:
+                grid-template-rows 350ms ease-in-out,
+                opacity 200ms ease-in-out;
         }
 
-        .card.is-active .card__visual {
+        .card:is(:hover, :focus-within) .card__footer {
+            grid-template-rows: 1fr;
+            opacity: 1;
+        }
+        .card:is(:hover, :focus-within) .card__visual {
             grid-template-rows: 1fr;
         }
     }

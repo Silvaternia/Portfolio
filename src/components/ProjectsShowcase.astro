@@ -1,14 +1,13 @@
 ---
-import ProjectRow from "./ProjectRow.astro";
+import ProjectRow from "./ProjectBar.astro";
 import placeHolderImg from "../assets/images/projectImg.png";
 type Project = {
     Name: string;
     Description: string;
     ImageUrl: ImageMetadata;
-    type: string;
     Stack: string[];
     Role: string;
-    Timeline: string;
+    Year: string;
 };
 
 const Projects: Project[] = [
@@ -17,30 +16,27 @@ const Projects: Project[] = [
         Description:
             "Lorem ipsum dolor sit amet consectetur. Aliquam facilisis viverra gravida ultrices amet. Ut enim eu vestibulum viverra pretium nulla.",
         ImageUrl: placeHolderImg,
-        type: "B2B marketing website",
         Stack: ["Front-end", "Tailwindcss", "Django"],
         Role: "Front-end developer",
-        Timeline: "09/2025 - present",
+        Year: "09/2025 - present",
     },
     {
         Name: "WeSeeDo",
         Description:
             "Lorem ipsum dolor sit amet consectetur. Aliquam facilisis viverra gravida ultrices amet. Ut enim eu vestibulum viverra pretium nulla.",
         ImageUrl: placeHolderImg,
-        type: "B2B marketing website",
         Stack: ["Django", "full-stack", "WagtailCMS"],
         Role: "Front-end developer",
-        Timeline: "06/2025 - present",
+        Year: "06/2025 - present",
     },
     {
         Name: "EvenThuis",
         Description:
             "Lorem ipsum dolor sit amet consectetur. Aliquam facilisis viverra gravida ultrices amet. Ut enim eu vestibulum viverra pretium nulla.",
         ImageUrl: placeHolderImg,
-        type: "B2B marketing website",
         Stack: ["Django", "full-stack", "WagtailCMS"],
         Role: "Front-end & Designer",
-        Timeline: "01/2025 - 06/2026",
+        Year: "01/2025 - 06/2026",
     },
 ];
 ---
@@ -54,9 +50,6 @@ const Projects: Project[] = [
 
 <style>
     .showcase {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         margin-block: 6rem;
     }
     .showcase__title {
@@ -67,18 +60,15 @@ const Projects: Project[] = [
     .showcase__content {
         width: 100%;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         gap: 2rem;
     }
-
-    @media (min-width: 768px) {
-        .showcase__title {
-            text-align: center;
-        }
+    @media (min-width: 640px) {
         .showcase__content {
             grid-template-columns: repeat(2, 1fr);
         }
     }
+
     @media (min-width: 1024px) {
         .showcase__content {
             grid-template-columns: 1fr;
@@ -86,53 +76,3 @@ const Projects: Project[] = [
         }
     }
 </style>
-<script>
-    function addListeners() {
-        const projectsWrapper = document.querySelector(".showcase__content");
-
-        if (!projectsWrapper) return;
-        projectsWrapper.addEventListener("click", (event) => {
-            const target = event.target;
-            if (!(target instanceof HTMLElement)) return;
-            const card = target.closest(".card");
-            if (!card) return;
-            card.classList.toggle("is-active");
-        });
-        // projectsWrapper.addEventListener(
-        //     "mouseleave",
-        //     (event) => {
-        //         const target = event.target;
-        //         if (!(target instanceof HTMLElement)) return;
-        //         const card = target.closest(".card");
-        //         if (!card) return;
-        //         console.log(event.target);
-        //         card.classList.remove("is-active");
-        //     },
-        //     true,
-        // );
-        projectsWrapper.addEventListener("keydown", (event) => {
-            const target = event.target;
-            if (!(target instanceof HTMLElement)) return;
-            const card = target.closest(".card");
-            if (!card) return;
-            if (event.key === "Escape") {
-                card.classList.remove("is-active");
-            }
-        });
-        projectsWrapper.addEventListener("focusin", (event) => {
-            const target = event.target;
-            if (!(target instanceof HTMLElement)) return;
-            const card = target.closest(".card");
-            if (!card) return;
-            card.classList.add("is-active");
-        });
-        projectsWrapper.addEventListener("focusout", (event) => {
-            const target = event.target;
-            if (!(target instanceof HTMLElement)) return;
-            const card = target.closest(".card");
-            if (!card) return;
-            card.classList.add("is-active");
-        });
-    }
-    addListeners();
-</script>
