@@ -2,41 +2,41 @@
 import ProjectRow from "./ProjectBar.astro";
 import placeHolderImg from "../assets/images/projectImg.png";
 type Project = {
-    Name: string;
-    Description: string;
-    ImageUrl: ImageMetadata;
-    Stack: string[];
-    Role: string;
-    Year: string;
+    name: string;
+    description: string;
+    imageUrl: ImageMetadata;
+    stack: string[];
+    role: string;
+    year: string;
 };
 
 const Projects: Project[] = [
     {
-        Name: "123meekijken",
-        Description:
+        name: "123meekijken",
+        description:
             "Lorem ipsum dolor sit amet consectetur. Aliquam facilisis viverra gravida ultrices amet. Ut enim eu vestibulum viverra pretium nulla.",
-        ImageUrl: placeHolderImg,
-        Stack: ["Front-end", "Tailwindcss", "Django"],
-        Role: "Front-end developer",
-        Year: "09/2025 - present",
+        imageUrl: placeHolderImg,
+        stack: ["Front-end", "Tailwindcss", "Django"],
+        role: "Front-end developer",
+        year: "09/2025 - present",
     },
     {
-        Name: "WeSeeDo",
-        Description:
+        name: "WeSeeDo",
+        description:
             "Lorem ipsum dolor sit amet consectetur. Aliquam facilisis viverra gravida ultrices amet. Ut enim eu vestibulum viverra pretium nulla.",
-        ImageUrl: placeHolderImg,
-        Stack: ["Django", "full-stack", "WagtailCMS"],
-        Role: "Front-end developer",
-        Year: "06/2025 - present",
+        imageUrl: placeHolderImg,
+        stack: ["Django", "full-stack", "WagtailCMS"],
+        role: "Front-end developer",
+        year: "06/2025 - present",
     },
     {
-        Name: "EvenThuis",
-        Description:
+        name: "EvenThuis",
+        description:
             "Lorem ipsum dolor sit amet consectetur. Aliquam facilisis viverra gravida ultrices amet. Ut enim eu vestibulum viverra pretium nulla.",
-        ImageUrl: placeHolderImg,
-        Stack: ["Django", "full-stack", "WagtailCMS"],
-        Role: "Front-end & Designer",
-        Year: "01/2025 - 06/2026",
+        imageUrl: placeHolderImg,
+        stack: ["Django", "full-stack", "WagtailCMS"],
+        role: "Front-end & Designer",
+        year: "01/2025 - 06/2026",
     },
 ];
 ---
