@@ -1,5 +1,4 @@
 ---
-// ToDo: Hide icons on mobile + hide interation
 import AstroLogo from "../assets/icons/astro.svg";
 import TailwindLogo from "../assets/icons/tailwind-css.svg";
 import FigmaLogo from "../assets/icons/figma.svg";
@@ -30,7 +29,7 @@ const tools = [
             {
                 tools.map(({ name, Logo }) => (
                     <div class="skill__logo" data-tool={name}>
-                        <Logo width={128} height={128} />
+                        <Logo width={112} height={112} />
                     </div>
                 ))
             }
@@ -40,7 +39,11 @@ const tools = [
         {
             tools.map(({ name }) => (
                 <li class="skill__item">
-                    <button type="button" class="skill__button" data-tool={name}>
+                    <button
+                        type="button"
+                        class="skill__button"
+                        data-tool={name}
+                    >
                         {name}
                     </button>
                 </li>
@@ -54,7 +57,6 @@ const tools = [
         display: grid;
         margin-bottom: 18rem;
         gap: 3rem;
-        text-align: center;
     }
     .skill__header {
         display: flex;
@@ -84,10 +86,10 @@ const tools = [
         text-align: left;
         cursor: pointer;
 
-        opacity: 0.5;
+        opacity: 0.8;
         transition: opacity 200ms ease;
     }
-    .skill__button:is(:hover, :focus-visible) {
+    .skill__button--active {
         opacity: 1;
     }
 
@@ -96,32 +98,35 @@ const tools = [
         outline-offset: 0.25rem;
     }
     .skill__logos {
-        position: relative;
-    }
-    .skill__logo {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        opacity: 0;
-        visibility: hidden;
-        padding: 1rem;
-        background-color: black;
-        border-radius: 0.5rem;
-
-        transition:
-            opacity 200ms ease,
-            visibility 0s linear 200ms;
-    }
-    .skill__logo--active {
-        opacity: 1;
-        visibility: visible;
+        display: none;
     }
 
     @media (min-width: 768px) {
         .skill {
             grid-template-columns: repeat(2, 1fr);
             gap: 0.5rem;
-            text-align: left;
+        }
+        .skill__logos {
+            display: inline-block;
+            position: relative;
+        }
+        .skill__logo {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            opacity: 0;
+            visibility: hidden;
+            padding: 1.5rem;
+            border: 0.5px solid rgb(from var(--color-light-gray) r g b / 0.6);
+            border-radius: 0.5rem;
+
+            transition:
+                opacity 200ms ease,
+                visibility 0s linear 200ms;
+        }
+        .skill__logo--active {
+            opacity: 1;
+            visibility: visible;
         }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -132,25 +137,33 @@ const tools = [
 </style>
 
 <script>
+    const desktop = window.matchMedia("(width >= 768px)");
     (() => {
         const skillList = document.querySelector(".skill__list");
-        let activeEl: HTMLElement;
+        let activeLogo: Element | null;
+        let activeType: Element | null;
 
-        if (!skillList) return;
+        if (!skillList) return; 
+
         skillList.addEventListener("pointerover", (event) => {
+            if (!desktop.matches) return;
             if (!(event.target instanceof HTMLElement)) return;
+
             const target = event.target.closest(".skill__button");
             if (!target) return;
-            let skillLogo = document.querySelector(`[data-tool="${target.textContent}"]`);
-            if (!skillLogo) return;
-            if (!activeEl) {
-                activeEl = skillLogo;
-                activeEl.classList.add("skill__logo--active");
-            } else if (activeEl !== skillLogo) {
-                activeEl.classList.remove("skill__logo--active");
-                activeEl = skillLogo;
-                activeEl.classList.add("skill__logo--active");
-            }
+            const skillType = target.getAttribute("data-tool");
+            const skillLogo = document.querySelector(
+                `.skill__logo[data-tool="${skillType}"]`,
+            );
+            if (!skillLogo || skillLogo === activeLogo) return;
+            activeLogo?.classList.remove("skill__logo--active");
+            activeType?.classList.remove("skill__button--active");
+
+            skillLogo.classList.add("skill__logo--active");
+            target.classList.add("skill__button--active");
+
+            activeLogo = skillLogo;
+            activeType = target;
         });
     })();
 </script>
