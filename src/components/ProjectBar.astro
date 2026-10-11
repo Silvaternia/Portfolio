@@ -9,19 +9,16 @@ const details = [
 ---
 
 <a
-    href={`/projects/${project.slug}`}
+    href={project.url}
+    target="_blank"
+    rel="noopener"
+    rel="noreferrer"
     class="card"
     aria-label=`Read about project ${project.name}`
 >
     <div class="card__visual">
         <div class="card__visual-inner">
-            <Image
-                src={project.imageUrl}
-                layout="constrained"
-                width={640}
-                height={360}
-                alt=""
-            />
+            <Image src={project.imageUrl} layout="constrained" width={640} height={360} alt="" />
         </div>
     </div>
     <div class="card__content">
@@ -39,9 +36,7 @@ const details = [
                 details.map(([label, value]) => (
                     <div class="card__details">
                         <dt class="card__details-head">{label}</dt>
-                        <dd>
-                            {Array.isArray(value) ? value.join(", ") : value}
-                        </dd>
+                        <dd>{Array.isArray(value) ? value.join(", ") : value}</dd>
                     </div>
                 ))
             }
