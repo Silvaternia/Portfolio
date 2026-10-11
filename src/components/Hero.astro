@@ -7,27 +7,12 @@ import MaiilIcon from "../assets/icons/mail.svg";
     <div class="hero__content">
         <div class="hero__intro">
             <h1 class="hero__title">BOUKE SIKKEMA</h1>
-            <p class="hero__lead">
-                Front-end developer with a sprinkle of UI design, based in the
-                Netherlands
-            </p>
-
-            <a
-                href="mailto:"
-                class="availability"
-                aria-label="Open to front-end roles. Get in touch."
-            >
+            <p class="hero__lead">Front-end developer with a sprinkle of UI design, based in the Netherlands</p>
+            <a href="mailto:" class="availability" aria-label="Open to front-end roles. Get in touch.">
                 <span class="availability__dot" aria-hidden="true"></span>
-
                 <span class="availability__rotator">
-                    <span
-                        class="availability__label availability__label--front"
-                    >
-                        Open to front-end roles
-                    </span>
-                    <span
-                        class="availability__label availability__label--bottom"
-                    >
+                    <span class="availability__label availability__label--front"> Open to front-end roles </span>
+                    <span class="availability__label availability__label--bottom">
                         Get in touch<MaiilIcon width={16} height={16} />
                     </span>
                 </span>
@@ -42,7 +27,9 @@ import MaiilIcon from "../assets/icons/mail.svg";
 
 <style>
     .hero {
-        min-height: calc(100dvh - 80px);
+        /* Navbar height! */
+        margin-top: 64px;
+        height: calc(100dvh - 80px);
         display: flex;
         flex-direction: column;
         align-items: center;
