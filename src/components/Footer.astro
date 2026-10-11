@@ -3,35 +3,33 @@ import ArrowUpRight from "../assets/icons/arrow_up_right.svg";
 ---
 
 <footer class="footer container">
-    <div class="footer__header">
-        <h3 class="footer__title">That's it. You've seen everything.</h3>
+    <div class="footer__contact">
+        <h2 class="footer__title">That's it. You've seen everything.</h2>
+        <p class="footer__lead">I'm open to new roles. If you think I'd fit your team, say hi.</p>
 
-        <p class="footer__lead">Want to see more? Tell me about your project.</p>
+        <a class="footer__cta" href="mailto:hello@boukesikkema.nl">
+            <span>johndoe@gmail.com</span>
+            <ArrowUpRight class="footer__icon" width={20} height={20} fill="currentColor" aria-hidden="true" />
+        </a>
     </div>
 
-    <a class="footer__cta accent" href="mailto:johndoe@gmail.com">
-        johndoe@gmail.com
-        <ArrowUpRight width={16} height={16} fill="currentColor" />
-    </a>
-
     <div class="footer__meta">
-        <span>© 2026 John, all rights reserved</span>
+        <small class="footer__copy">© 2026 Bouke, all rights reserved</small>
 
-        <ul class="footer__socials">
+        <!-- <ul class="footer__socials">
             <li>
-                <a class="footer__social" href="...">
+                <a class="footer__social" href="..." target="_blank" rel="noopener noreferrer">
                     GitHub
-                    <ArrowUpRight width={16} height={16} fill="currentColor" />
+                    <ArrowUpRight class="footer__icon" width={16} height={16} fill="currentColor" aria-hidden="true" />
                 </a>
             </li>
-
             <li>
-                <a class="footer__social" href="...">
+                <a class="footer__social" href="..." target="_blank" rel="noopener noreferrer">
                     LinkedIn
-                    <ArrowUpRight width={16} height={16} fill="currentColor" />
+                    <ArrowUpRight class="footer__icon" width={16} height={16} fill="currentColor" aria-hidden="true" />
                 </a>
             </li>
-        </ul>
+        </ul> -->
     </div>
 </footer>
 
@@ -39,44 +37,122 @@ import ArrowUpRight from "../assets/icons/arrow_up_right.svg";
     .footer {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 2rem;
+        gap: 3rem;
+        padding-block: 6rem 2rem;
+        color: var(--color-text);
     }
-    .footer__header {
+
+    .footer__contact {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
         text-align: center;
+    }
+
+    .footer__title {
+        max-width: 22ch;
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        line-height: 1.1;
+        text-wrap: balance;
+    }
+
+    .footer__lead {
+        max-width: 36ch;
+        font-size: 1.333rem;
+        opacity: 0.8;
+        text-wrap: balance;
+    }
+
+    .footer__cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1rem;
+        padding: 1rem 1.75rem;
+        font-size: clamp(1.1rem, 4vw, 1.5rem);
+        overflow-wrap: anywhere;
+        color: var(--color-off-white);
+        background: var(--color-text);
+        border-radius: 999px;
+        text-decoration: none;
+        transition:
+            transform 200ms ease-out,
+            box-shadow 200ms ease-out;
+    }
+
+    .footer__cta:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+
+    .footer__cta:focus-visible,
+    .footer__social:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 4px;
+    }
+
+    .footer__icon {
+        flex-shrink: 0;
+        transition: transform 200ms ease-out;
+    }
+
+    .footer__meta {
+        display: flex;
+        flex-direction: column;
         align-items: center;
         gap: 1rem;
-        max-width: 75%;
+        padding-top: 1.5rem;
+        /* border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent); */
     }
-    .footer__title {
+
+    .footer__copy {
+        font-size: 0.875rem;
+        opacity: 0.75;
     }
-    .footer__lead {
-        font-size: 1.333rem;
-    }
-    .footer_mail {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-bottom: 3rem;
-    }
-    .footer__meta {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: end;
-    }
+
     .footer__socials {
         list-style: none;
         margin: 0;
+        padding: 0;
         display: flex;
-        align-items: end;
         gap: 2rem;
     }
+
     .footer__social {
-        display: flex;
+        display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.4rem;
+        text-underline-offset: 0.25em;
+    }
+
+    .footer__social:hover,
+    .footer__social:focus-visible {
+        text-decoration: underline;
+    }
+
+    @media (min-width: 640px) {
+        .footer__meta {
+            flex-direction: row;
+            justify-content: center;
+        }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .footer__cta:hover,
+        .footer__cta:focus-visible {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+        }
+
+        .footer__cta:hover .footer__icon,
+        .footer__cta:focus-visible .footer__icon {
+            transform: translate(3px, -3px);
+        }
+
+        .footer__social:hover .footer__icon,
+        .footer__social:focus-visible .footer__icon {
+            transform: translate(2px, -2px);
+        }
     }
 </style>
