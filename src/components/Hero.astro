@@ -1,5 +1,5 @@
 ---
-import ArrowDown from "../assets/icons/arrow_down.svg";
+// import ArrowDown from "../assets/icons/arrow_down.svg";
 import MaiilIcon from "../assets/icons/mail.svg";
 ---
 
@@ -7,8 +7,12 @@ import MaiilIcon from "../assets/icons/mail.svg";
     <div class="hero__content">
         <div class="hero__intro">
             <h1 class="hero__title">BOUKE SIKKEMA</h1>
-            <p class="hero__lead">Front-end developer with a sprinkle of UI design, based in the Netherlands</p>
-            <a href="mailto:" class="availability" aria-label="Open to front-end roles. Get in touch.">
+            <p class="hero__lead">Front-end developer. based in the Netherlands</p>
+            <a
+                href="mailto:hello@boukesikkema.nl?subject=Front-end%20job%20opportunity"
+                class="availability"
+                aria-label="Open to front-end roles. Get in touch."
+            >
                 <span class="availability__dot" aria-hidden="true"></span>
                 <span class="availability__rotator">
                     <span class="availability__label availability__label--front"> Open to front-end roles </span>
@@ -19,10 +23,9 @@ import MaiilIcon from "../assets/icons/mail.svg";
             </a>
         </div>
     </div>
-    <a href="#projects" class="hero__work-link">
-        <p>View my work</p>
-        <ArrowDown />
-    </a>
+    <div class="hero__work-link">
+        <p>[scroll and explore]</p>
+    </div>
 </header>
 
 <style>
@@ -139,7 +142,7 @@ import MaiilIcon from "../assets/icons/mail.svg";
         display: flex;
         align-items: center;
         gap: 1rem;
-        font-size: 1.333rem;
+        font-size: 1rem;
         opacity: 0.8;
 
         margin-block: 2rem;
