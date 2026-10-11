@@ -42,6 +42,7 @@ import NavBar from "../components/NavBar.astro";
     html {
         margin: 0;
         background-color: var(--color-background);
+        scroll-padding-top: 80px;
     }
 
     body {
@@ -104,5 +105,10 @@ import NavBar from "../components/NavBar.astro";
         list-style: none;
         margin: 0;
         padding: 0;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+        html {
+            scroll-behavior: smooth;
+        }
     }
 </style>
