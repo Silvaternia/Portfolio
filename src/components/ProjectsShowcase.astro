@@ -8,6 +8,7 @@ type Project = {
     stack: string[];
     role: string;
     year: string;
+    url: string;
 };
 
 const Projects: Project[] = [
@@ -19,6 +20,7 @@ const Projects: Project[] = [
         stack: ["Front-end", "Tailwindcss", "Django"],
         role: "Front-end developer",
         year: "09/2025 - present",
+        url: "https://123meekijken.nl",
     },
     {
         name: "WeSeeDo",
@@ -28,6 +30,7 @@ const Projects: Project[] = [
         stack: ["Django", "full-stack", "WagtailCMS"],
         role: "Front-end developer",
         year: "06/2025 - present",
+        url: "https://.weseedo.nl",
     },
     // {
     //     name: "EvenThuis",
@@ -42,7 +45,13 @@ const Projects: Project[] = [
 ---
 
 <section class="showcase container">
-    <h2 id="projects" class="showcase__title">Featured work</h2>
+    <div>
+        <h2 id="projects" class="showcase__title">Featured work</h2>
+        <p class="showcase__lead">
+            W.I.P. I am currently working on proper mockups and copywriting thus, the card shall lead to their
+            respective LIVE websites
+        </p>
+    </div>
     <div class="showcase__content">
         {Projects.map((project) => <ProjectRow project={project} />)}
     </div>
@@ -55,6 +64,8 @@ const Projects: Project[] = [
     .showcase__title {
         text-align: left;
         line-height: 1.1;
+    }
+    .showcase__lead {
         margin-bottom: 2rem;
     }
     .showcase__content {
@@ -78,7 +89,10 @@ const Projects: Project[] = [
             gap: 0;
         }
         .showcase__title {
-            margin-bottom: 5rem;
+            margin-bottom: 1rem;
+        }
+        .showcase__lead {
+            margin-bottom: 3rem;
         }
     }
 </style>
