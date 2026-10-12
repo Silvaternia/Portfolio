@@ -1,0 +1,118 @@
+<div>
+    <div class="btn btn--accent">Primary button</div>
+    <div class="btn btn--ghost"><span>Ghost button</span></div>
+</div>
+
+<style>
+    /* Styling copied from WsD */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 1.25rem;
+
+        font-size: inherit;
+        min-height: 2.5rem;
+        font-weight: 600;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+
+        border-radius: 0.25rem;
+        overflow: hidden;
+        position: relative;
+        isolation: isolate;
+        box-sizing: border-box;
+
+        &:disabled,
+        &[aria-disabled="true"] {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        &:focus-visible {
+            outline-color: black;
+            outline-offset: 2px;
+            box-shadow: 0 0 0 4px rgba(8, 8, 8, 0.2);
+        }
+    }
+    .btn--accent {
+        background-color: #31e86d;
+        color: #073c58;
+        transition: color 0.35s;
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+
+            background-color: #073c58;
+            border-radius: 2rem;
+            transform: translateX(100%);
+            transition:
+                transform 0.35s ease,
+                border-radius 0.35s ease;
+        }
+
+        &:is(:hover, :focus-visible) {
+            color: white;
+
+            &::before {
+                transform: translateX(0);
+                border-radius: 0;
+            }
+        }
+    }
+    .btn--ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        color: #073c58;
+        background-color: transparent;
+        border-color: transparent;
+
+        & span {
+            text-underline-offset: 0.3em;
+            text-decoration: underline;
+        }
+
+        &::after {
+            content: ">";
+            display: inline-block;
+            width: 1em;
+            font-size: 1.2em;
+            opacity: 0;
+            pointer-events: none;
+            text-decoration: none;
+        }
+
+        &:is(:hover, :focus-visible)::after {
+            opacity: 1;
+            animation: ghost-arrow-bounce 0.4s ease-out;
+        }
+    }
+    @keyframes ghost-arrow-bounce {
+        0% {
+            opacity: 0;
+            transform: translateX(-0.25rem);
+        }
+
+        60% {
+            opacity: 1;
+            transform: translateX(0.2rem);
+        }
+
+        80% {
+            transform: translateX(-0.05rem);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+</style>

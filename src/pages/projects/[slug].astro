@@ -1,0 +1,36 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ButtonDemo from "../../components/sections/projectButtonDemo.astro";
+import { projects } from "../../data/projects.ts";
+
+export function getStaticPaths() {
+    return projects.map((project) => ({
+        params: { slug: project.slug },
+        props: { project },
+    }));
+}
+const { project } = Astro.props;
+---
+
+<Layout title={`${project.name} - John`}>
+    <main class="container project">
+        <h1 class="project__heading">{project.name}</h1>
+        <p class="project__year">{project.year}</p>
+        <p class="project__role">{project.role}</p>
+        <p class="project__stack">{project.stack}</p>
+        <p class="project__description">{project.description}</p>
+        <a href=`https:://${project.slug}.nl`>View Project</a>
+        <div>
+            {project.hasBtnDemo && <ButtonDemo />}
+        </div>
+    </main>
+</Layout>
+<style>
+    .project {
+        padding-top: var(--navbar-total-height);
+    }
+    .project__heading {
+        font-size: clamp(3rem, 2.7283rem + 1.3583vw, 3.815rem);
+        font-weight: 600;
+    }
+</style>
