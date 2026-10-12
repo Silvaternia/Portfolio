@@ -1,47 +1,8 @@
 ---
 import ProjectRow from "./ProjectBar.astro";
 import placeHolderImg from "../assets/images/projectImg.png";
-type Project = {
-    name: string;
-    description: string;
-    imageUrl: ImageMetadata;
-    stack: string[];
-    role: string;
-    year: string;
-    url: string;
-};
+import { projects } from "../data/projects.ts";
 
-const Projects: Project[] = [
-    {
-        name: "123meekijken",
-        description:
-            "Lorem ipsum dolor sit amet consectetur. Aliquam facilisis viverra gravida ultrices amet. Ut enim eu vestibulum viverra pretium nulla.",
-        imageUrl: placeHolderImg,
-        stack: ["Front-end", "Tailwindcss", "Django"],
-        role: "Front-end developer",
-        year: "09/2025 - present",
-        url: "https://123meekijken.nl",
-    },
-    {
-        name: "WeSeeDo",
-        description:
-            "Lorem ipsum dolor sit amet consectetur. Aliquam facilisis viverra gravida ultrices amet. Ut enim eu vestibulum viverra pretium nulla.",
-        imageUrl: placeHolderImg,
-        stack: ["Django", "full-stack", "WagtailCMS"],
-        role: "Front-end developer",
-        year: "06/2025 - present",
-        url: "https://.weseedo.nl",
-    },
-    // {
-    //     name: "EvenThuis",
-    //     description:
-    //         "Lorem ipsum dolor sit amet consectetur. Aliquam facilisis viverra gravida ultrices amet. Ut enim eu vestibulum viverra pretium nulla.",
-    //     imageUrl: placeHolderImg,
-    //     stack: ["Django", "full-stack", "WagtailCMS"],
-    //     role: "Front-end & Designer",
-    //     year: "01/2025 - 06/2026",
-    // },
-];
 ---
 
 <section class="showcase container">
@@ -53,7 +14,7 @@ const Projects: Project[] = [
         </p>
     </div>
     <div class="showcase__content">
-        {Projects.map((project) => <ProjectRow project={project} />)}
+        {projects.map((project) => <ProjectRow project={project} />)}
     </div>
 </section>
 

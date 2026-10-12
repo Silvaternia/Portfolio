@@ -6,10 +6,11 @@ const details = [
     ["Stack", project.stack],
     ["Year", project.year],
 ];
+console.log(project.cover);
 ---
 
 <a
-    href={project.url}
+    href={`projects/${project.slug}`}
     target="_blank"
     rel="noopener"
     rel="noreferrer"
@@ -18,7 +19,7 @@ const details = [
 >
     <div class="card__visual">
         <div class="card__visual-inner">
-            <Image src={project.imageUrl} layout="constrained" width={640} height={360} alt="" />
+            <Image src={project.cover.src} layout="constrained" width={640} height={360} alt={project.cover.alt} />
         </div>
     </div>
     <div class="card__content">
