@@ -55,7 +55,7 @@ import ArrowUpRight from "../assets/icons/arrow_up_right.svg";
     .navigation__wrapper {
         position: fixed;
         inset-inline: 0;
-        top: 0.75rem;
+        top: var(--navbar-top-pos);
         z-index: 100;
         margin-inline: auto;
     }
@@ -80,7 +80,7 @@ import ArrowUpRight from "../assets/icons/arrow_up_right.svg";
         grid-template-columns: 1fr 1fr;
         align-items: center;
         padding-inline: 2rem;
-        height: 64px;
+        height: var(--navbar-height);
     }
 
     .navigation__nav-list {
