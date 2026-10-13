@@ -1,15 +1,26 @@
 ---
 import ArrowUpRight from "../assets/icons/arrow_up_right.svg";
+const { heading } = Astro.props;
 ---
 
 <footer class="footer container">
     <div class="footer__contact">
-        <h2 class="footer__title">That's it. You've seen everything.</h2>
-        <p class="footer__lead">I'm open to new roles. If you think I'd fit your team, say hi.</p>
+        <h2 class="footer__title">
+            {heading || "That's it. You've seen everything."}
+        </h2>
+        <p class="footer__lead">
+            I'm open to new roles. If you think I'd fit your team, say hi.
+        </p>
 
         <a class="footer__cta" href="mailto:hello@boukesikkema.nl">
-            <span>johndoe@gmail.com</span>
-            <ArrowUpRight class="footer__icon" width={20} height={20} fill="currentColor" aria-hidden="true" />
+            <span>hello@boukesikkema.nl</span>
+            <ArrowUpRight
+                class="footer__icon"
+                width={20}
+                height={20}
+                fill="currentColor"
+                aria-hidden="true"
+            />
         </a>
     </div>
 
