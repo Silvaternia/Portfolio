@@ -22,13 +22,15 @@ const { title } = Astro.props;
         <main>
             <slot />
         </main>
-        <Footer />
+        <slot name="footer">
+            <Footer />
+        </slot>
     </body>
 </html>
 
 <style is:global>
     :root {
-        --container-width: min(1152px, calc(100% - 4rem));
+        --container-width: min(72rem, calc(100% - 2rem));
 
         --color-background: #f4f3f6;
         --color-off-white: #fcfbfd;
@@ -83,10 +85,10 @@ const { title } = Astro.props;
     }
 
     h2 {
-        font-size: clamp(3rem, 2.7283rem + 1.3583vw, 3.815rem);
+        font-size: clamp(2.746rem, 2.2601rem + 2.4295vw, 3.815rem);
     }
     h3 {
-        font-size: clamp(2rem, 1.2487rem + 3.7567vw, 3.051875rem);
+        font-size: clamp(1.953rem, 1.4535rem + 2.4977vw, 3.052rem);
         font-weight: 600;
     }
 
