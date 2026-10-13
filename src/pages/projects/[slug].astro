@@ -1,7 +1,10 @@
 ---
+import { Image } from "astro:assets";
+import { projects } from "../../data/projects.ts";
+import ArrowUpRight from "../../assets/icons/arrow_up_right.svg";
 import Layout from "../../layouts/Layout.astro";
 import ButtonDemo from "../../components/sections/projectButtonDemo.astro";
-import { projects } from "../../data/projects.ts";
+import Footer from "../../components/Footer.astro";
 
 export function getStaticPaths() {
     return projects.map((project) => ({
@@ -13,24 +16,140 @@ const { project } = Astro.props;
 ---
 
 <Layout title={`${project.name} - John`}>
-    <main class="container project">
-        <h1 class="project__heading">{project.name}</h1>
-        <p class="project__year">{project.year}</p>
-        <p class="project__role">{project.role}</p>
-        <p class="project__stack">{project.stack}</p>
-        <p class="project__description">{project.description}</p>
-        <a href=`https:://${project.slug}.nl`>View Project</a>
-        <div>
+    <div class="container project">
+        <div class="project__info">
+            <h1 class="project__heading">{project.name}</h1>
+            <div class="project__details">
+                <div class="project__timeline">
+                    <p class="project__detail-label">period</p>
+                    <p class="project__period">{project.period}</p>
+                </div>
+                <div class="project__role">
+                    <p class="project__detail-label">role(s)</p>
+                    {project.role.map((role) => <p>{role}</p>)}
+                </div>
+
+                <div class="project__stack">
+                    <p class="project__detail-label">stack</p>
+                    <p>{project.stack.join(" | ")}</p>
+                </div>
+                <div class="project__description">
+                    <p class="project__detail-label">description</p>
+                    <p>{project.description}</p>
+                </div>
+                <a class="project__view-link" href=`https://${project.slug}.nl`>
+                    View Project <ArrowUpRight
+                        class="project__view-icon"
+                        width={16}
+                        height={16}
+                        aria-hidden="true"
+                        fill="currentColor"
+                    />
+                </a>
+            </div>
+        </div>
+
+        <div class="project__gallery">
+            {
+                project.gallery.map((img) => (
+                    <figure class="project__figure">
+                        <Image
+                            src={img.src}
+                            layout="full-width"
+                            width={720}
+                            height={405}
+                            alt={img.alt}
+                            class="project__image"
+                        />
+                        {img.caption && (
+                            <figcaption class="project__caption">
+                                {img.caption}
+                            </figcaption>
+                        )}
+                    </figure>
+                ))
+            }
             {project.hasBtnDemo && <ButtonDemo />}
         </div>
-    </main>
+    </div>
+    <Footer slot="footer" heading="Like what you see?" />
 </Layout>
 <style>
     .project {
-        padding-top: var(--navbar-total-height);
+        margin-top: calc(var(--navbar-total-height) + 1.5rem);
+        margin-bottom: 4rem;
     }
     .project__heading {
-        font-size: clamp(3rem, 2.7283rem + 1.3583vw, 3.815rem);
+        font-size: clamp(2.746rem, 2.2601rem + 2.4295vw, 3.815rem);
         font-weight: 600;
+        margin-bottom: 3rem;
+    }
+    .project__details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 4rem;
+    }
+    .project__detail-label {
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 0.75rem;
+        margin-bottom: 0.25rem;
+        opacity: 0.6;
+    }
+    .project__stack,
+    .project__description {
+        grid-column: span 2;
+    }
+    .project__gallery {
+        width: 100%;
+        display: grid;
+        row-gap: 4rem;
+    }
+    .project__figure {
+        margin: 0;
+    }
+    .project__caption {
+        margin-top: 0.5rem;
+        font-size: 0.75rem;
+    }
+    .project__image {
+        border: 0.5px solid rgb(from var(--color-light-gray) r g b / 0.8);
+        overflow: hidden;
+        height: auto;
+    }
+    .project__view-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+    }
+    .project__view-icon {
+        flex-shrink: 0;
+        transform: translate(0);
+        transition: transform 200ms ease;
+    }
+    .project__view-link:is(:hover, :focus-visible) .project__view-icon {
+        transform: translate(4px, -4px);
+    }
+    @media (min-width: 768px) {
+        .project {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 5rem;
+        }
+        .project__details {
+            grid-template-columns: 1fr;
+        }
+        .project__stack,
+        .project__description {
+            grid-column: span 1;
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .project__view-icon {
+            transition: none;
+            transform: none;
+        }
     }
 </style>

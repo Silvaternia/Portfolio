@@ -1,6 +1,10 @@
 import type { ImageMetadata } from "astro";
 import wsdCover from "../assets/images/projects/weseedo-thumbnail.webp"
+import wsdHeroNew from "../assets/images/projects/weseedo-hero-concept.webp"
 import meekijkenCover from "../assets/images/projects/123meekijken-thumbnail.webp"
+import meekijkenFooter from "../assets/images/projects/123meekijken-footer.webp"
+import meekijkenBlogHero from "../assets/images/projects/123meekijken-blog-hero.webp"
+import meekijkenMobileNav from "../assets/images/projects/123meekijken-mobile-nav.webp"
 
 type ProjectImage = {
     src: ImageMetadata;
@@ -14,7 +18,7 @@ type Project = {
     cover: ProjectImage;
     role: string[];
     stack: string[];
-    year: string;
+    period: string;
     gallery: ProjectImage[];
     hasBtnDemo?: boolean
 }
@@ -28,15 +32,29 @@ export const projects: Project[] = [
             alt: "123meekijken website displayed on a laptop",
         },
         description:
-            "Lorem ipsum dolor sit amet consectetur. Aliquam facilisis viverra gravida ultrices amet. Ut enim eu vestibulum viverra pretium nulla.",
+            "Responsive marketing website introducing 123meekijken to potential customers, with demo and contact request options. Manageable via Wagtail CMS. I refactored and improved the code, and I maintain it",
 
-        role: ["front-end developer"],
-        stack: ["Front-end", "Tailwindcss", "Django"],
-        year: "09/2025 - present",
+        role: ["front-end developer", "UI designer"],
+        stack: ["JavaScript", "Tailwind CSS", "Django"],
+        period: "2025 - present",
         gallery: [
             {
                 src: meekijkenCover,
-                alt: "Screenshot of the 123meekijken website",
+                alt: "123meekijken website displayed on a laptop",
+            },
+            {
+                src: meekijkenFooter,
+                alt: "Footer design for 123meekijken with locations, support links and company details",
+                caption: "A footer design I made that went live"
+            },
+            {
+                src: meekijkenBlogHero,
+                alt: "Hero section of the 123meekijken blog page",
+            },
+            {
+                src: meekijkenMobileNav,
+                alt: "Mobile navigation menu of the 123meekijken website",
+                caption: "The updated mobile navigation design that I made"
             },
         ],
     },
@@ -48,28 +66,21 @@ export const projects: Project[] = [
             alt: "Screenshot of the weseedo website"
         },
         description:
-            "Lorem ipsum dolor sit amet consectetur. Aliquam facilisis viverra gravida ultrices amet. Ut enim eu vestibulum viverra pretium nulla.",
-
+            "Responsive marketing website for WeSeeDo, a B2B video calling platform. I rewrote it from scratch on current Django and Wagtail versions and migrated the frontend from Bootstrap and Grunt to esbuild and Tailwind CSS.",
         role: ["front-end developer"],
-        stack: ["Front-end", "Tailwindcss", "Django"],
-        year: "01/2025 - present",
+        stack: ["JavaScript", "Tailwindcss", "Django"],
+        period: "2025 - present",
         gallery: [
             {
                 src: wsdCover,
-                alt: "Desktop layout of the 123meekijken homepage",
+                alt: "Screenshot of the WeSeeDo website",
+            },
+            {
+                src: wsdHeroNew,
+                alt: "Concept for a new WeSeeDo homepage hero",
             },
         ],
         hasBtnDemo: true,
     },
 
 ];
-
-// type Project = {
-//     name: string;
-//     description: string;
-//     imageUrl: ImageMetadata;
-//     stack: string[];
-//     role: string;
-//     year: string;
-//     url: string;
-// };
