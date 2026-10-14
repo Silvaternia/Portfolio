@@ -3,75 +3,87 @@ import MenuIcon from "../assets/icons/bars-solid-full.svg";
 import ArrowUpRight from "../assets/icons/arrow_up_right.svg";
 ---
 
-<div class="container navigation__wrapper">
-    <nav class="navigation glass" aria-label="Main">
-        <div class="navigation__bar">
-            <a class="navigation__link-home" href="/">@Bouke</a>
+<div class="container navigation">
+    <nav class="navigation__bar" aria-label="Main">
+        <a class="navigation__link-home" href="/">@Bouke</a>
 
-            <ul class="navigation__nav-list">
-                <li><a class="navigation__link" href="#projects">My Work</a></li>
-                <li><a class="navigation__link" href="#about">About me</a></li>
-            </ul>
-            <a class="navigation__link-cta" href="mailto:hello@boukesikkema.nl?subject=Hello%20Bouke"
-                >Get in touch
-                <ArrowUpRight
-                    class="navigation__cta-icon"
-                    width={16}
-                    height={16}
-                    aria-hidden="true"
-                    fill="currentColor"
-                /></a
-            >
-            <button
-                class="navigation__mobile-trigger"
-                aria-label="Open navigation"
-                aria-expanded="false"
-                aria-controls="mobile-menu"
-            >
-                <MenuIcon width={36} height={36} fill="currentColor" />
-            </button>
-        </div>
-
-        <div class="navigation__drawer" id="mobile-menu">
-            <div class="navigation__drawer-inner">
-                <ul class="mobile__nav-list">
-                    <li>
-                        <a class="mobile__link" href="#projects">
-                            Work <ArrowUpRight width={16} height={16} aria-hidden="true" fill="currentColor" />
-                        </a>
-                    </li>
-                    <li>
-                        <a class="mobile__link" href="#about">
-                            About me <ArrowUpRight width={16} height={16} aria-hidden="true" fill="currentColor" />
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <ul class="navigation__nav-list">
+            <li>
+                <a class="navigation__link" href="#projects">My Work</a>
+            </li>
+            <li><a class="navigation__link" href="#about">About me</a></li>
+        </ul>
+        <a class="navigation__link-cta" href="mailto:hello@boukesikkema.nl?subject=Hello%Bouke"
+            >Get in touch
+            <ArrowUpRight
+                class="navigation__cta-icon"
+                width={16}
+                height={16}
+                aria-hidden="true"
+                fill="currentColor"
+            /></a
+        >
+        <button
+            class="navigation__mobile-trigger"
+            aria-label="Open navigation"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+        >
+            <MenuIcon width={36} height={36} fill="currentColor" />
+        </button>
     </nav>
+
+    <div class="navigation__drawer" id="mobile-menu">
+        <div class="navigation__drawer-inner">
+            <ul class="mobile__nav-list">
+                <li>
+                    <a class="mobile__link" href="#projects">
+                        Work <ArrowUpRight
+                            width={16}
+                            height={16}
+                            aria-hidden="true"
+                            fill="currentColor"
+                        />
+                    </a>
+                </li>
+                <li>
+                    <a class="mobile__link" href="#about">
+                        About me <ArrowUpRight
+                            width={16}
+                            height={16}
+                            aria-hidden="true"
+                            fill="currentColor"
+                        />
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 <style>
-    .navigation__wrapper {
+    .navigation {
         position: fixed;
         inset-inline: 0;
         top: var(--navbar-top-pos);
         z-index: 100;
         margin-inline: auto;
+        color: var(--color-text);
+        background-color: var(--color-background);
+        border: 1px solid transparent;
+        transition:
+            border-radius 300ms ease,
+            border 200ms ease;
     }
-
-    .glass {
-        background: rgba(255, 255, 255, 0.06);
-        border-radius: 999px;
+    .navigation--floating {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 2.5rem;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(3.4px);
         -webkit-backdrop-filter: blur(3.4px);
         border: 1px solid rgba(255, 255, 255, 0.22);
     }
 
-    .navigation {
-        color: var(--color-text);
-    }
     .navigation__link-home {
         width: fit-content;
     }
@@ -187,27 +199,56 @@ import ArrowUpRight from "../assets/icons/arrow_up_right.svg";
 </style>
 
 <script>
-    function initMobileMenu() {
-        const navigation = document.querySelector<HTMLElement>(".navigation");
-        const trigger = document.querySelector<HTMLButtonElement>(".navigation__mobile-trigger");
-        if (!navigation || !trigger) return;
+    function initFloatingNav(nav: HTMLElement) {
+        const scrollThreshold = 80;
 
-        function setOpen(open: boolean) {
-            navigation!.classList.toggle("navigation--open", open);
-            trigger!.setAttribute("aria-expanded", String(open));
-            trigger!.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+        function toggleNavFloat(scrollPos: number) {
+            nav.classList.toggle(
+                "navigation--floating",
+                scrollPos > scrollThreshold,
+            );
         }
 
+        toggleNavFloat(window.scrollY);
+
+        document.addEventListener("scroll", () => {
+            toggleNavFloat(window.scrollY);
+        });
+    }
+    function initMobileMenu(nav: HTMLElement) {
+        const trigger = document.querySelector<HTMLButtonElement>(
+            ".navigation__mobile-trigger",
+        );
+        if (!trigger) return;
+
+        const setOpen = (open: boolean) => {
+            nav.classList.toggle("navigation--open", open);
+            trigger.setAttribute("aria-expanded", String(open));
+            trigger.setAttribute(
+                "aria-label",
+                open ? "Close navigation" : "Open navigation",
+            );
+        };
+
         trigger.addEventListener("click", () => {
-            setOpen(!navigation.classList.contains("navigation--open"));
+            setOpen(!nav.classList.contains("navigation--open"));
         });
 
         document.addEventListener("keydown", (event) => {
-            if (event.key === "Escape" && navigation.classList.contains("navigation--open")) {
+            if (
+                event.key === "Escape" &&
+                nav.classList.contains("navigation--open")
+            ) {
                 setOpen(false);
                 trigger.focus();
             }
         });
     }
-    initMobileMenu();
+    function initNavigation() {
+        const navigation = document.querySelector<HTMLElement>(".navigation");
+        if (!navigation) return;
+        initMobileMenu(navigation);
+        initFloatingNav(navigation);
+    }
+    initNavigation();
 </script>
