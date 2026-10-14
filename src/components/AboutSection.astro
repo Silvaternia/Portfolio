@@ -6,19 +6,21 @@ import ArrowUpRight from "../assets/icons/arrow_up_right.svg";
     <div>
         <h2 class="about__label">A little about me</h2>
         <p class="about__story">
-            I design and code simple, usable interfaces, and I love watching a
-            rough sketch turn into a living page on the web. Away from the
-            screen I'm learning to draw again, baking bread and desserts,
-            running, cycling, and learning to work on my own Mazda MX-5 NB.
+            I design and code simple, usable interfaces, and my favourite part is taking a design and turning it into
+            something people can actually use. Away from the screen you'll find me drawing, baking, running, cycling or
+            under the hood of my Mazda MX-5NB
         </p>
     </div>
 </div>
 
 <style>
     .about {
-        display: grid;
-        margin-bottom: 12rem;
-        gap:2rem;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 4rem;
     }
     .about__label {
         letter-spacing: 0.1em;
@@ -29,16 +31,10 @@ import ArrowUpRight from "../assets/icons/arrow_up_right.svg";
         margin-bottom: 0.5rem;
     }
 
-
     .about__story {
         font-size: clamp(1.563rem, 1.2703rem + 1.4633vw, 2.441rem);
         text-align: left;
         font-weight: 500;
         line-height: 1.3;
-    }
-    @media (min-width: 1024px) {
-        .about {
-            margin-bottom: 24rem;
-        }
     }
 </style>
