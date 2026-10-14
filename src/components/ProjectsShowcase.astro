@@ -1,16 +1,11 @@
 ---
 import ProjectRow from "./ProjectBar.astro";
 import { projects } from "../data/projects.ts";
-
 ---
 
 <section class="showcase container">
     <div>
         <h2 id="projects" class="showcase__title">Featured work</h2>
-        <p class="showcase__lead">
-            W.I.P. I am currently working on proper mockups and copywriting thus, the card shall lead to their
-            respective LIVE websites
-        </p>
     </div>
     <div class="showcase__content">
         {projects.map((project) => <ProjectRow project={project} />)}
@@ -25,9 +20,6 @@ import { projects } from "../data/projects.ts";
         text-align: left;
         line-height: 1.1;
     }
-    .showcase__lead {
-        margin-bottom: 2rem;
-    }
     .showcase__content {
         width: 100%;
         display: grid;
@@ -41,18 +33,12 @@ import { projects } from "../data/projects.ts";
     }
 
     @media (min-width: 1024px) {
-        .showcase {
-            margin-block: 8rem 24rem;
-        }
         .showcase__content {
             grid-template-columns: 1fr;
             gap: 0;
         }
         .showcase__title {
             margin-bottom: 1rem;
-        }
-        .showcase__lead {
-            margin-bottom: 3rem;
         }
     }
 </style>
