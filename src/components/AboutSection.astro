@@ -3,75 +3,42 @@ import ArrowUpRight from "../assets/icons/arrow_up_right.svg";
 ---
 
 <div class="container about" id="about">
-    <div class="about__intro">
-        <h2>A little about me</h2>
-        <a href="mailto:hello@boukesikkema.nl?subject=Hello%20Bouke" class="about__cta"
-            >Get in Touch <span class="about__cta-icon" aria-hidden="true">
-                <ArrowUpRight width={20} height={20} focusable="false" />
-            </span></a
-        >
+    <div>
+        <h2 class="about__label">A little about me</h2>
+        <p class="about__story">
+            I design and code simple, usable interfaces, and I love watching a
+            rough sketch turn into a living page on the web. Away from the
+            screen I'm learning to draw again, baking bread and desserts,
+            running, cycling, and learning to work on my own Mazda MX-5 NB.
+        </p>
     </div>
-    <p class="about__story">
-        I like to code and design simple, usable interfaces. From the first sketch to the final page, usability is my
-        priority. Away from the screen I like to draw, bake, tinker on my Mazda MX-5 NB, and play Palworld.
-    </p>
 </div>
 
 <style>
     .about {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
         margin-bottom: 12rem;
-        gap: 0.5rem;
+        gap:2rem;
     }
-    .about__intro {
-        display: grid;
-        row-gap: 4rem;
-    }
-    .about__cta {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background-color: var(--color-charcoal);
-        color: var(--color-off-white);
-        padding: 0.75rem 1.5rem;
-        width: fit-content;
-        height: fit-content;
-        border-radius: 1.175rem;
-        column-gap: 0.5rem;
+    .about__label {
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 600;
+        opacity: 0.8;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
     }
 
-    .about__cta-icon {
-        display: inline-flex;
-        flex-shrink: 0;
-        transition: transform 200ms ease-out;
-    }
-    .about__cta:is(:hover, :focus-visible) .about__cta-icon {
-        transform: translate(4px, -4px);
-    }
-
-    .about__cta:focus-visible {
-        outline: 2px solid var(--color-charcoal);
-        outline-offset: 4px;
-    }
 
     .about__story {
-        font-size: clamp(1.5625rem, 1.4323rem + 0.651vw, 1.953125rem);
+        font-size: clamp(1.563rem, 1.2703rem + 1.4633vw, 2.441rem);
         text-align: left;
+        font-weight: 500;
         line-height: 1.3;
     }
     @media (min-width: 1024px) {
         .about {
             margin-bottom: 24rem;
-        }
-    }
-    @media (prefers-reduced-motion: reduce) {
-        .about__cta-icon {
-            transition: none;
-        }
-
-        .about__cta:is(:hover, :focus-visible) .about__cta-icon {
-            transform: none;
         }
     }
 </style>
