@@ -9,9 +9,9 @@ import ArrowUpRight from "../assets/icons/arrow_up_right.svg";
 
         <ul class="navigation__nav-list">
             <li>
-                <a class="navigation__link" href="#projects">My Work</a>
+                <a class="navigation__link" href="/#projects">My Work</a>
             </li>
-            <li><a class="navigation__link" href="#about">About me</a></li>
+            <li><a class="navigation__link" href="/#about">About me</a></li>
         </ul>
         <a class="navigation__link-cta" href="mailto:hello@boukesikkema.nl?subject=Hello%Bouke"
             >Get in touch
@@ -37,23 +37,13 @@ import ArrowUpRight from "../assets/icons/arrow_up_right.svg";
         <div class="navigation__drawer-inner">
             <ul class="mobile__nav-list">
                 <li>
-                    <a class="mobile__link" href="#projects">
-                        Work <ArrowUpRight
-                            width={16}
-                            height={16}
-                            aria-hidden="true"
-                            fill="currentColor"
-                        />
+                    <a class="mobile__link" href="/#projects">
+                        Work <ArrowUpRight width={16} height={16} aria-hidden="true" fill="currentColor" />
                     </a>
                 </li>
                 <li>
-                    <a class="mobile__link" href="#about">
-                        About me <ArrowUpRight
-                            width={16}
-                            height={16}
-                            aria-hidden="true"
-                            fill="currentColor"
-                        />
+                    <a class="mobile__link" href="/#about">
+                        About me <ArrowUpRight width={16} height={16} aria-hidden="true" fill="currentColor" />
                     </a>
                 </li>
             </ul>
@@ -203,10 +193,7 @@ import ArrowUpRight from "../assets/icons/arrow_up_right.svg";
         const scrollThreshold = 80;
 
         function toggleNavFloat(scrollPos: number) {
-            nav.classList.toggle(
-                "navigation--floating",
-                scrollPos > scrollThreshold,
-            );
+            nav.classList.toggle("navigation--floating", scrollPos > scrollThreshold);
         }
 
         toggleNavFloat(window.scrollY);
@@ -216,18 +203,13 @@ import ArrowUpRight from "../assets/icons/arrow_up_right.svg";
         });
     }
     function initMobileMenu(nav: HTMLElement) {
-        const trigger = document.querySelector<HTMLButtonElement>(
-            ".navigation__mobile-trigger",
-        );
+        const trigger = document.querySelector<HTMLButtonElement>(".navigation__mobile-trigger");
         if (!trigger) return;
 
         const setOpen = (open: boolean) => {
             nav.classList.toggle("navigation--open", open);
             trigger.setAttribute("aria-expanded", String(open));
-            trigger.setAttribute(
-                "aria-label",
-                open ? "Close navigation" : "Open navigation",
-            );
+            trigger.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
         };
 
         trigger.addEventListener("click", () => {
@@ -235,10 +217,7 @@ import ArrowUpRight from "../assets/icons/arrow_up_right.svg";
         });
 
         document.addEventListener("keydown", (event) => {
-            if (
-                event.key === "Escape" &&
-                nav.classList.contains("navigation--open")
-            ) {
+            if (event.key === "Escape" && nav.classList.contains("navigation--open")) {
                 setOpen(false);
                 trigger.focus();
             }
