@@ -8,27 +8,17 @@ const details = [
 ];
 ---
 
-<a
-    href={`projects/${project.slug}`}
-    class="card"
-    aria-label=`Read about project ${project.name}`
->
+<a href={`projects/${project.slug}`} class="card" aria-label=`Read about project ${project.name}`>
     <div class="card__visual">
         <div class="card__visual-inner">
-            <Image
-                src={project.cover.src}
-                layout="constrained"
-                width={640}
-                height={360}
-                alt={project.cover.alt}
-            />
+            <Image src={project.cover.src} layout="constrained" width={640} height={360} alt={project.cover.alt} />
         </div>
     </div>
     <div class="card__content">
         <div class="card__header">
             <h3 class="card__title">{project.name}</h3>
             <div class="card__description">
-                <p>{project.role}</p>
+                <div class="card__roles">{project.role.map((role: string) => <p>{role}</p>)}</div>
                 <span class="card__button-view">
                     View project <span aria-hidden="true">→</span>
                 </span>
@@ -39,9 +29,7 @@ const details = [
                 details.map(([label, value]) => (
                     <div class="card__details">
                         <dt class="card__details-head">{label}</dt>
-                        <dd>
-                            {Array.isArray(value) ? value.join(", ") : value}
-                        </dd>
+                        <dd>{Array.isArray(value) ? value.join(", ") : value}</dd>
                     </div>
                 ))
             }
@@ -84,7 +72,16 @@ const details = [
         justify-content: space-between;
         gap: 0.5rem 1rem;
     }
-
+    .card__roles {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    .card__button-view {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
     .card__visual {
         display: block;
         width: 100%;
