@@ -6,21 +6,15 @@ const { heading } = Astro.props;
 <footer class="footer container">
     <div class="footer__contact">
         <h2 class="footer__title">
-            {heading || "That's it. You've seen everything."}
+            {heading || "Like what you see? Let’s talk."}
         </h2>
         <p class="footer__lead">
-            I'm open to new roles. If you think I'd fit your team, say hi.
+            I’m open to new roles. If you’re looking for someone who can design and build, say hi.
         </p>
 
         <a class="footer__cta" href="mailto:hello@boukesikkema.nl">
             <span>hello@boukesikkema.nl</span>
-            <ArrowUpRight
-                class="footer__icon"
-                width={20}
-                height={20}
-                fill="currentColor"
-                aria-hidden="true"
-            />
+            <ArrowUpRight class="footer__icon" width={20} height={20} fill="currentColor" aria-hidden="true" />
         </a>
     </div>
 
@@ -63,14 +57,14 @@ const { heading } = Astro.props;
 
     .footer__title {
         max-width: 22ch;
-        font-size: clamp(2rem, 6vw, 3.5rem);
+        font-size: clamp(1.953rem, 1.5867rem + 1.8317vw, 3.052rem);
         line-height: 1.1;
         text-wrap: balance;
     }
 
     .footer__lead {
         max-width: 36ch;
-        font-size: 1.333rem;
+        font-size: 1.25rem;
         opacity: 0.8;
         text-wrap: balance;
     }
@@ -79,9 +73,9 @@ const { heading } = Astro.props;
         display: inline-flex;
         align-items: center;
         gap: 0.75rem;
-        margin-top: 1rem;
+        margin-top: 2rem;
         padding: 1rem 1.75rem;
-        font-size: clamp(1.1rem, 4vw, 1.5rem);
+        font-size: clamp(1rem, 0.8123rem + 0.9383vw, 1.563rem);
         overflow-wrap: anywhere;
         color: var(--color-off-white);
         background: var(--color-text);
